@@ -1,0 +1,15 @@
+node_modules/
+dist/
+*.local
+.env
+.env.*
+!.env.example
+settings.json
+
+# Content images (user-generated)
+content/images/*.png
+content/images/*.jpg
+content/images/*.gif
+content/images/*.webp
+content/images/*.svg
+!content/images/.gitkeep
