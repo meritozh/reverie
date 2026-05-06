@@ -8,6 +8,7 @@ import upload from "./routes/upload"
 import { createAiRouter } from "./routes/ai"
 import { createHermesRouter } from "./routes/hermes"
 import { createSettingsRouter } from "./routes/settings"
+import { createBuildRouter } from "./routes/build"
 import { createProvider } from "./lib/llm"
 import { loadSettings, saveSettings } from "./lib/settings"
 import type { ProviderType, LLMProvider } from "./lib/llm"
@@ -56,6 +57,9 @@ app.route("/api/upload", upload)
 
 const settings = createSettingsRouter(loadSettings, saveSettings)
 app.route("/api/settings", settings)
+
+const build = createBuildRouter()
+app.route("/api/build", build)
 
 function getProvider(type: ProviderType): LLMProvider | null {
   const configs: Record<string, { type: ProviderType; apiKey: string; model: string; baseURL?: string } | undefined> = {

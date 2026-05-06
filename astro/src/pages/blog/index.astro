@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro'
+import { getCollection } from 'astro:content'
+
+const allPosts = await getCollection('posts')
+const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+---
+
+<Base title="Blog" description="All posts">
+  <h2>All Posts</h2>
+  {posts.length === 0 && <p>No posts yet.</p>}
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.id}`}>
+          {post.data.title}
+        </a>
+        <span style="color:#6b7280;font-size:0.875rem;margin-left:0.5rem;">
+          {new Date(post.data.date).toLocaleDateString()}
+        </span>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  ul { list-style: none; padding: 0; }
+  li { padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6; }
+  a { text-decoration: none; color: #1e293b; }
+  a:hover { color: #3b82f6; }
+</style>

@@ -13,3 +13,7 @@ content/images/*.gif
 content/images/*.webp
 content/images/*.svg
 !content/images/.gitkeep
+
+# Astro build output
+astro/dist/
+astro/.astro/

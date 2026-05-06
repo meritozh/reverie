@@ -1,0 +1,38 @@
+---
+import Base from './Base.astro'
+
+interface Props {
+  title: string
+  date: string
+  tags: string[]
+}
+
+const { title, date, tags } = Astro.props
+---
+
+<Base title={title}>
+  <article>
+    <header>
+      <h1>{title}</h1>
+      <p>
+        <time datetime={date}>{new Date(date).toLocaleDateString()}</time>
+        {tags.length > 0 && (
+          <span>
+            {' '}
+            &middot; {tags.map((tag) => (
+              <span style="display:inline-block;background:#f3f4f6;padding:0.125rem 0.5rem;border-radius:0.25rem;font-size:0.75rem;margin-left:0.25rem;">{tag}</span>
+            ))}
+          </span>
+        )}
+      </p>
+    </header>
+    <slot />
+  </article>
+</Base>
+
+<style>
+  article { line-height: 1.75; }
+  h1 { margin-bottom: 0.5rem; }
+  pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+  code { font-size: 0.875rem; }
+</style>

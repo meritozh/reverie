@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string
+  description?: string
+}
+
+const { title, description = '' } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | Reverie</title>
+  {description && <meta name="description" content={description} />}
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+  </nav>
+  <main>
+    <slot />
+  </main>
+</body>
+</html>
+
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 48rem; margin: 0 auto; padding: 1rem; }
+  nav { display: flex; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; }
+  nav a { text-decoration: none; color: #3b82f6; }
+  nav a:hover { text-decoration: underline; }
+</style>
